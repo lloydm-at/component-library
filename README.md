@@ -16,21 +16,13 @@ A reactive, mobile-first React component library with Tailwind CSS. Built for mo
 - 🚀 **Tree-shakeable** - Only import what you need
 - 💪 **Zero Dependencies** - Except peer dependencies (React & React-DOM)
 
-## 📦 Installation
-
-```bash
-npm install @avense/component-library
-# or
-yarn add @avense/component-library
-# or
-pnpm add @avense/component-library
-```
 
 ### Peer Dependencies
 
 Make sure you have these installed:
 
 ```bash
+npm install tailwindcss @tailwindcss/vite
 npm install react react-dom
 ```
 

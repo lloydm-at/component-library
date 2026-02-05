@@ -1,0 +1,75 @@
+{
+  "name": "@avense/component-library",
+  "version": "0.1.0",
+  "description": "A reactive React component library with Tailwind CSS - mobile-first, accessible, and customizable",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/index.esm.js",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./styles": "./dist/style.css",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/avense-tech/component-library.git"
+  },
+  "bugs": {
+    "url": "https://github.com/avense-tech/component-library/issues"
+  },
+  "homepage": "https://github.com/avense-tech/component-library#readme",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "prepublishOnly": "npm run build",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
+  },
+  "keywords": [
+    "react",
+    "components",
+    "ui",
+    "tailwind",
+    "tailwindcss",
+    "typescript",
+    "datatable",
+    "button",
+    "responsive",
+    "mobile-first",
+    "accessible",
+    "ui-library",
+    "component-library"
+  ],
+  "author": "Avense Tech",
+  "license": "MIT",
+  "peerDependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.47",
+    "@types/react-dom": "^18.2.18",
+    "@typescript-eslint/eslint-plugin": "^6.18.1",
+    "@typescript-eslint/parser": "^6.18.1",
+    "@vitejs/plugin-react": "^4.2.1",
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.33",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5.3.3",
+    "vite": "^5.0.11",
+    "vite-plugin-dts": "^3.7.0"
+  },
+  "dependencies": {
+    "clsx": "^2.1.0"
+  }
+}

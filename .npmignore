@@ -1,0 +1,49 @@
+# Source files
+src/
+node_modules/
+.vscode/
+.idea/
+
+# Demo files (important - exclude from npm package)
+src/demo/
+dist/demo/
+
+# PrimeReact source (reference only)
+primereact-master/
+
+# Configuration files
+vite.config.ts
+tsconfig.json
+tsconfig.node.json
+tailwind.config.js
+postcss.config.js
+.eslintrc.json
+
+# Development files
+*.log
+*.lock
+.DS_Store
+.env
+.env.local
+
+# Build artifacts (keep dist/)
+# dist/ is NOT ignored - this is what gets published!
+# But we exclude demo subdirectory above
+
+# Storybook
+.storybook/
+storybook-static/
+
+# Git
+.git/
+.gitignore
+
+# Testing
+coverage/
+*.test.ts
+*.test.tsx
+*.spec.ts
+*.spec.tsx
+
+# Documentation that's only for developers
+PUBLISHING.md

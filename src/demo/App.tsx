@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import { AButtonPage, ATablePage, ADrawerPage } from './pages';
-import { AButton } from '../components/AButton';
+import React, { useState } from "react";
+import { AButtonPage, ATablePage, ADrawerPage } from "./pages";
+import { AButton } from "../components/AButton";
+import ACalendarPage from "./pages/ACalendarPage";
 
 interface MenuItem {
   id: string;
@@ -10,34 +11,83 @@ interface MenuItem {
 }
 
 function App() {
-  const [activePage, setActivePage] = useState<string>('button');
+  const [activePage, setActivePage] = useState<string>("button");
   const [expandedItems, setExpandedItems] = useState<string[]>([]);
 
   const menuItems: MenuItem[] = [
     {
-      id: 'button',
-      label: 'Button',
+      id: "button",
+      label: "Button",
       icon: (
-        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" />
+        <svg
+          className="w-5 h-5"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"
+          />
         </svg>
       ),
     },
     {
-      id: 'table',
-      label: 'Table',
+      id: "table",
+      label: "Table",
       icon: (
-        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+        <svg
+          className="w-5 h-5"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"
+          />
         </svg>
       ),
     },
     {
-      id: 'drawer',
-      label: 'Drawer',
+      id: "drawer",
+      label: "Drawer",
       icon: (
-        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+        <svg
+          className="w-5 h-5"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M4 6h16M4 12h16M4 18h16"
+          />
+        </svg>
+      ),
+    },
+    {
+      id: "calendar",
+      label: "Calendar",
+      icon: (
+        <svg
+          className="w-5 h-5"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M4 6h16M4 12h16M4 18h16"
+          />
         </svg>
       ),
     },
@@ -49,18 +99,20 @@ function App() {
 
   const toggleExpand = (id: string) => {
     setExpandedItems((prev) =>
-      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
+      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id],
     );
   };
 
   const renderContent = () => {
     switch (activePage) {
-      case 'button':
+      case "button":
         return <AButtonPage />;
-      case 'table':
+      case "table":
         return <ATablePage />;
-      case 'drawer':
+      case "drawer":
         return <ADrawerPage />;
+      case "calendar":
+        return <ACalendarPage />;
       default:
         return <AButtonPage />;
     }
@@ -81,7 +133,7 @@ function App() {
                     handleMenuClick(item.id);
                     toggleExpand(item.id);
                   }}
-                  variant={activePage === item.id ? 'primary' : 'ghost'}
+                  variant={activePage === item.id ? "primary" : "ghost"}
                   className="w-full justify-between"
                 >
                   <div className="flex items-center gap-3">
@@ -91,13 +143,18 @@ function App() {
                   {item.subItems && (
                     <svg
                       className={`w-4 h-4 transition-transform ${
-                        expandedItems.includes(item.id) ? 'rotate-90' : ''
+                        expandedItems.includes(item.id) ? "rotate-90" : ""
                       }`}
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
                     >
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 5l7 7-7 7"
+                      />
                     </svg>
                   )}
                 </AButton>
@@ -107,9 +164,7 @@ function App() {
         </div>
       </aside>
 
-      <main className="ml-64 flex-1 p-8 bg-slate-950">
-        {renderContent()}
-      </main>
+      <main className="ml-64 flex-1 p-8 bg-slate-950">{renderContent()}</main>
     </div>
   );
 }

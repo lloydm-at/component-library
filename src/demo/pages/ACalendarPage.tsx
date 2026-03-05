@@ -33,7 +33,9 @@ function ACalendarPage() {
                   selected={singleDate}
                   onSelect={(date) => setSingleDate(date as Date)}
                   showtime={true}
+                  timezone="UTC"
                   captionlayout="dropdown"
+                  color="blue"
                   className="max-w-md rounded-lg bg-blue-500 text-white p-6"
                 />
               </div>
@@ -46,6 +48,7 @@ function ACalendarPage() {
                   showtime={true}
                   timezone="UTC"
                   captionlayout="buttons"
+                  color="orange"
                   className="max-w-md rounded-lg bg-orange-500 text-white p-6"
                 />
               </div>
@@ -68,6 +71,7 @@ function ACalendarPage() {
                   showtime={true}
                   timezone="UTC"
                   captionlayout="dropdown"
+                  color="blue"
                   className="max-w-md rounded-lg bg-blue-500 text-white p-6"
                 />
               </div>
@@ -80,6 +84,7 @@ function ACalendarPage() {
                   showtime={true}
                   timezone="UTC"
                   captionlayout="buttons"
+                  color="orange"
                   className="max-w-md rounded-lg bg-orange-500 text-white p-6"
                 />
               </div>
@@ -102,6 +107,7 @@ function ACalendarPage() {
                   showtime={false}
                   timezone="UTC"
                   captionlayout="dropdown"
+                  color="blue"
                   className="max-w-md rounded-lg bg-blue-500 text-white p-6"
                 />
               </div>
@@ -113,6 +119,7 @@ function ACalendarPage() {
                   onSelect={(date) => setRangeDate(date as DateRange)}
                   showtime={false}
                   captionlayout="buttons"
+                  color="orange"
                   className="max-w-md rounded-lg bg-orange-500 text-white p-6"
                 />
               </div>

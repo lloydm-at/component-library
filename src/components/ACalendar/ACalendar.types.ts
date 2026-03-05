@@ -8,4 +8,5 @@ export interface ACalendarProps {
   timezone?: string;
   className?: string;
   captionlayout?: "dropdown" | "buttons";
+  color?: "blue" | "orange";
 }

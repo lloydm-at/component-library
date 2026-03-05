@@ -9,6 +9,9 @@ import { cn } from "../../lib/utils";
 import { Button } from "./button";
 import { buttonVariants } from "./variants";
 
+// add `color` prop and tightly type it
+export type Accent = "blue" | "orange";
+
 function Calendar({
   className,
   classNames,
@@ -17,9 +20,11 @@ function Calendar({
   buttonVariant = "ghost",
   formatters,
   components,
+  color = "blue",
   ...props
 }: React.ComponentProps<typeof DayPicker> & {
   buttonVariant?: React.ComponentProps<typeof Button>["variant"];
+  color?: Accent;
 }) {
   const defaultClassNames = getDefaultClassNames();
 
@@ -27,7 +32,6 @@ function Calendar({
     <DayPicker
       showOutsideDays={showOutsideDays}
       className={cn(
-        // don't force bg-background here; allow caller to override entirely
         "group/calendar p-3 [--cell-size:2rem] [[data-slot=card-content]_&]:bg-transparent [[data-slot=popover-content]_&]:bg-transparent",
         String.raw`rtl:**:[.rdp-button\_next>svg]:rotate-180`,
         String.raw`rtl:**:[.rdp-button\_previous>svg]:rotate-180`,
@@ -154,7 +158,7 @@ function Calendar({
             <ChevronDownIcon className={cn("size-4", className)} {...props} />
           );
         },
-        DayButton: CalendarDayButton,
+        DayButton: (props) => <CalendarDayButton {...props} color={color} />,
         WeekNumber: ({ children, ...props }) => {
           return (
             <td {...props}>
@@ -171,18 +175,33 @@ function Calendar({
   );
 }
 
+interface CalendarDayButtonProps extends React.ComponentProps<
+  typeof DayButton
+> {
+  color?: Accent;
+}
+
 function CalendarDayButton({
   className,
   day,
   modifiers,
+  color = "blue",
   ...props
-}: React.ComponentProps<typeof DayButton>) {
+}: CalendarDayButtonProps) {
   const defaultClassNames = getDefaultClassNames();
 
   const ref = React.useRef<HTMLButtonElement>(null);
   React.useEffect(() => {
     if (modifiers.focused) ref.current?.focus();
   }, [modifiers.focused]);
+
+  // Determine static color classes based on the chosen accent color
+  const getColorClasses = () => {
+    if (color === "orange") {
+      return "data-[selected-single=true]:bg-orange-700 data-[selected-single=true]:text-orange-100 data-[range-start=true]:bg-orange-700 data-[range-end=true]:bg-orange-700 data-[range-middle=true]:bg-orange-300 group-data-[focused=true]/day:ring-orange-300 data-[today=true]:ring data-[today=true]:ring-orange-300";
+    }
+    return "data-[selected-single=true]:bg-blue-700 data-[selected-single=true]:text-blue-100 data-[range-start=true]:bg-blue-700 data-[range-end=true]:bg-blue-700 data-[range-middle=true]:bg-blue-300 group-data-[focused=true]/day:ring-blue-300 data-[today=true]:ring data-[today=true]:ring-blue-300";
+  };
 
   return (
     <Button
@@ -199,11 +218,7 @@ function CalendarDayButton({
       data-range-start={modifiers.range_start}
       data-range-end={modifiers.range_end}
       data-range-middle={modifiers.range_middle}
-      className={cn(
-        "data-[selected-single=true]:bg-primary data-[selected-single=true]:text-primary-foreground data-[range-middle=true]:bg-accent data-[range-middle=true]:text-accent-foreground data-[range-start=true]:bg-primary data-[range-start=true]:text-primary-foreground data-[range-end=true]:bg-primary data-[range-end=true]:text-primary-foreground group-data-[focused=true]/day:border-ring group-data-[focused=true]/day:ring-ring/50 flex aspect-square h-auto w-full min-w-[--cell-size] flex-col gap-1 font-normal leading-none data-[range-end=true]:rounded-md data-[range-middle=true]:rounded-none data-[range-start=true]:rounded-md group-data-[focused=true]/day:relative group-data-[focused=true]/day:z-10 group-data-[focused=true]/day:ring-[3px] [&>span]:text-xs [&>span]:opacity-70",
-        defaultClassNames.day,
-        className,
-      )}
+      className={cn(getColorClasses(), defaultClassNames.day, className)}
       {...props}
     />
   );

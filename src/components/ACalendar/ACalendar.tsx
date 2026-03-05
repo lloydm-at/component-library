@@ -12,6 +12,7 @@ export const ACalendar = ({
   timezone,
   className,
   captionlayout,
+  color = "blue",
 }: ACalendarProps) => {
   const [internalSelected, setInternalSelected] = React.useState<
     Date | DateRange | undefined
@@ -85,6 +86,7 @@ export const ACalendar = ({
   return (
     <div className={cn("flex flex-col gap-4", className)}>
       <Calendar
+        color={color}
         className={cn(className)}
         {...(calendarProps as React.ComponentProps<typeof Calendar>)}
       />
